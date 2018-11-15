@@ -1,0 +1,28 @@
+[
+    {
+        "name":"路由跳转的name",   
+        "title":"菜单显示的内容1",
+        "id":"1",
+        "orderIndex": 0,
+        "parentId":"-1",
+        "childrens":[
+            {
+                "name":"路由跳转的name",   
+                "title":"菜单显示的内容",
+                "id":"11",
+                "orderIndex": 0 , 
+                "parentId":1
+            }
+        ]    
+    },
+    {
+        "name":"路由跳转的name",   
+        "title":"菜单显示的内容2",
+        "id":"2",
+        "orderIndex": 0,
+        "parentId":"-1"
+    }
+
+
+
+]
