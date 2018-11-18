@@ -41,7 +41,8 @@ export default {
           title: '',
           orderIndex: '',
           name: '',
-        }
+      },
+      requestInfo: ''
     }
   },
   created(){
@@ -55,14 +56,18 @@ export default {
       })
     },
 
-    show(){
+    show(entity , requestInfo){
+      this.form =  !entity ? this.form : entity;
+      this.requestInfo = requestInfo;
+      this.getAllMenuList();
       this.dialogVisible = true;
     },
     submit(){
-      this.axios.post('/api/menu/add',{...this.form}).then(resp =>{
+      let config = {...this.requestInfo , data: {...this.form}}
+      this.axios.request(config).then(resp =>{
         this.$notify({
           title: '消息',
-          message: '新增菜单成功',
+          message: this.requestInfo.methods =='post' ?'新增菜单成功' :'编辑菜单成功',
           type: 'success',
           position: 'top-left'
         });

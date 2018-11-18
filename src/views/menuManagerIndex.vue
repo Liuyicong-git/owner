@@ -18,13 +18,13 @@
             <el-table-column prop="parentId" label="父菜单" align="center" />
             <el-table-column prop="name" label="编码" align="center" />
             <el-table-column prop="orderIndex" label="排序" align="center" />
-            <!-- <el-table-column label="操作">
+            <el-table-column label="操作">
               <template slot-scope="scope">
                 <el-button
                   size="mini"
                   @click="editMenu(scope.row)">编辑</el-button>
               </template>
-            </el-table-column> -->
+            </el-table-column> 
         </el-table>
     </div>  
     <add-dialog ref="adddialog" @close="closeDialog"></add-dialog>
@@ -39,7 +39,7 @@ export default {
   data(){
     return {
       menuList:[],
-      multipleSelection: []
+      multipleSelection: [] ,
     }
   },
   created(){
@@ -52,7 +52,10 @@ export default {
       })
     },
     addMenu(){
-      this.$refs.adddialog.show();
+      this.$refs.adddialog.show(null , {method:'post', url: '/api/menu/add'});
+    },
+    editMenu(row){
+      this.$refs.adddialog.show(row , {method:'put', url: '/api/menu/update'} );
     },
     deleteMenu(){
       let idArr = this.multipleSelection.map(val=>val.id);
