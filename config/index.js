@@ -10,7 +10,16 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/api': {
+            //target: 'http://47.105.169.142:8089/springboot-mybatis-generator-test-0.0.1-SNAPSHOT/api/',
+            target: 'http://localhost:8081/api/',
+            changeOrigin: true,
+            pathRewrite: {
+                '^/api': ''
+            }
+      }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

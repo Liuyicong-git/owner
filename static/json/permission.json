@@ -11,6 +11,22 @@
                 "title":"菜单显示的内容",
                 "id":"11",
                 "orderIndex": 0 , 
+                "parentId":1,
+                 "childrens":[
+                     {
+                        "name":"路由跳转的name",   
+                        "title":"3级菜单",
+                        "id":"13",
+                        "orderIndex": 0 , 
+                        "parentId":1
+                     }
+                 ]
+            },
+            {
+                "name":"路由跳转的name",   
+                "title":"2级菜单显示的内容",
+                "id":"11",
+                "orderIndex": 0 , 
                 "parentId":1
             }
         ]    
