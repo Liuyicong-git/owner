@@ -20,8 +20,7 @@
 </template>
 
 <script>
-const menuList = require('../../static/json/permission.json')
-import NavMenu from './NavMenu'
+import NavMenu from '@/components/NavMenu'
 export default {
   name: 'Home',
   components:{NavMenu},
@@ -29,25 +28,34 @@ export default {
     return {
        isCollapse:false,
        activeName: 'first',
-       menuList:menuList
+       menuList:[]
     };
   },
  
   created(){
-    
-    //  this.axios.post('/api/add',{
-    //   "name":"1",
-    //   "title":"test1",
-    //   "orderIndex": 1,
-    //   "parentId":-1
-    // }).then(resp=>{
-    //   console.log(resp)
-    // })
+    this.axios.get('/api/menu/all').then(resp=>{
+       this.menuList = this.toTreeData(resp.data.obj); 
+    })
   },
   methods:{
-   
+    toTreeData(target){
+      let tree = target.filter( (parent)=>{
+        let childArr = target.filter( val =>{
+          return val.parentId == parent.id;
+        })
+        if(childArr.length>0){
+          parent.childrens = childArr;
+        }
+        return parent.parentId ==-1;
+      })
+      return tree;
+    },
     handleClick(tab, event) {
-      console.log(tab, event);
+      if(tab.name == 'second'){
+        this.$router.push({
+          name:'articleHome'
+        })
+      }
     }
     
   },

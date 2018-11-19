@@ -27,15 +27,15 @@
             </el-table-column> 
         </el-table>
     </div>  
-    <add-dialog ref="adddialog" @close="closeDialog"></add-dialog>
+    <menu-dialog ref="adddialog" @close="closeDialog"></menu-dialog>
   </div>
 </template>
 
 <script>
-import addDialog from "./add"
+import menuDialog from "./menuDialog"
 export default {
   name: 'menuManagerIndex',
-  components:{addDialog},
+  components:{menuDialog},
   data(){
     return {
       menuList:[],

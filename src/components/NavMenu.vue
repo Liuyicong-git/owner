@@ -5,7 +5,7 @@
             <div v-if="item.childrens && item.childrens.length != 0">
                
                 <div>
-                    <el-submenu :index="item.id"  >
+                    <el-submenu :index="item.id+''"  >
                         <template slot="title">
                             <i class="el-icon-location"></i>
                             <span slot="title">{{item.title}}</span>
@@ -16,7 +16,7 @@
                 
             </div>   
             <div v-else>
-                <el-menu-item :index="item.id"  >
+                <el-menu-item :index="item.id+''"  >
                     <i class="el-icon-setting"></i>
                     <span slot="title">{{item.title}}</span>
                 </el-menu-item>  

@@ -2,26 +2,26 @@
   <el-dialog
     title="新增菜单栏"
     :visible.sync="dialogVisible"
-    width="30%"
+    width="430px"
     :before-close="handleClose">
-    <el-form ref="form" :model="form" label-width="80px">
+    <el-form ref="form" :model="form" label-width="130px">
         <el-form-item label="活动区域">
-          <el-select v-model="form.parentId" placeholder="请选择上级菜单">
-            <el-option label="无上级菜单" value="-1"/>
+          <el-select v-model="form.parentId" placeholder="请选择上级菜单" class="menuInput">
+            <el-option label="无上级菜单" :value="-1"/>
             <el-option v-for="menu in parentMenuList" :key="menu.id" :label="menu.title" :value="menu.id"/>
           </el-select>
         </el-form-item>
         <el-form-item label="菜单名称">
-          <el-input v-model="form.title"/>
+          <el-input v-model="form.title" class="menuInput"/>
         </el-form-item>
         <el-form-item label="序号">
-          <el-input v-model="form.orderIndex"/>
+          <el-input v-model="form.orderIndex" class="menuInput"/>
         </el-form-item>
         <el-form-item label="编码名称">
-          <el-input v-model="form.name"/>
+          <el-input v-model="form.name" class="menuInput"/>
         </el-form-item>
     </el-form>
-    <span slot="footer" class="dialog-footer">
+    <span slot="footer">
       <el-button @click="dialogVisible = false">取 消</el-button>
       <el-button type="primary" @click="submit">确 定</el-button>
     </span>
@@ -31,7 +31,7 @@
 <script>
 
 export default {
-  name: 'add',
+  name: 'menuDialog',
   data(){
     return {
       dialogVisible: false ,
@@ -67,7 +67,7 @@ export default {
       this.axios.request(config).then(resp =>{
         this.$notify({
           title: '消息',
-          message: this.requestInfo.methods =='post' ?'新增菜单成功' :'编辑菜单成功',
+          message: this.requestInfo.method =='post' ?'新增菜单成功' :'编辑菜单成功',
           type: 'success',
           position: 'top-left'
         });
@@ -86,8 +86,9 @@ export default {
 }
 </script>
 
-<style>
- body{
-   margin: 0;
- }
+<style scoped>
+   .menuInput{
+      width: 180px;
+     
+   }
 </style>
