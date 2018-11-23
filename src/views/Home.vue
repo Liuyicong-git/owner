@@ -56,6 +56,11 @@ export default {
           name:'articleHome'
         })
       }
+      if(tab.name == 'first'){
+        this.$router.push({
+          name:'Home'
+        })
+      }
     }
     
   },

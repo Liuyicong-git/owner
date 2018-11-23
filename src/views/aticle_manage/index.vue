@@ -1,15 +1,26 @@
 <template>
   <div >
-    <quill-editor  ref="myQuillEditor" :content="content"
-                style="height: 200px; margin-bottom: 54px"
-                :options="editorOption"
-                @change="onEditorChange($event)">
-    </quill-editor> 
-    <form action="" method="post" enctype="multipart/form-data" id="uploadFormMulti">
-          <input style="display: none" id="quillForm" type="file" name="file_data"
-           multiple accept="image/jpg,image/jpeg,image/png,image/gif"
-            @change="uploadImg('uploadFormMulti')" /><!--style="display: none"-->
-    </form>
+    <el-form ref="form" :model="form" label-width="130px">
+      <el-form-item label="标题">
+          <el-input v-model="form.title" class="menuInput"/>
+      </el-form-item>
+      <el-form-item label="内容">
+        <quill-editor  ref="myQuillEditor" :content="content"
+                    style="height: 70vh; margin-bottom: 54px"
+                    :options="editorOption"
+                    @change="onEditorChange($event)">
+        </quill-editor> 
+      </el-form-item>  
+      <form action="" method="post" enctype="multipart/form-data" id="uploadFormMulti">
+            <input style="display: none" id="quillForm" type="file" name="file_data"
+            multiple accept="image/jpg,image/jpeg,image/png,image/gif"
+              @change="uploadImg('uploadFormMulti')" /><!--style="display: none"-->
+      </form>
+      <div style="float:right;">
+        <el-button type="primary">提交</el-button>
+        <el-button> 取消</el-button>
+      </div>  
+    </el-form>  
   </div>
 </template>
 
@@ -29,9 +40,10 @@ export default {
   },
   data () {
     return {
-      content: '<h2>I am Example</h2>',
-      editorOption: {
-        
+      content: '',
+      editorOption: {},
+      form:{
+        title:''
       }
     }
   },
