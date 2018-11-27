@@ -8,8 +8,10 @@
       </el-aside>
       <el-main>
         <el-tabs v-model="activeName" @tab-click="handleClick">
+          <el-tab-pane label="我的文章" name="myaticle"></el-tab-pane>
+          <el-tab-pane label="文章管理" name="second"></el-tab-pane>
           <el-tab-pane label="菜单管理" name="first"></el-tab-pane>
-          <el-tab-pane label="配置管理" name="second"></el-tab-pane>
+          
           <el-tab-pane label="角色管理" name="third"></el-tab-pane>
           <el-tab-pane label="定时任务管理" name="fourth"></el-tab-pane>
         </el-tabs>
@@ -27,7 +29,7 @@ export default {
   data() {
     return {
        isCollapse:false,
-       activeName: 'first',
+       activeName: 'myaticle',
        menuList:[]
     };
   },
@@ -53,12 +55,17 @@ export default {
     handleClick(tab, event) {
       if(tab.name == 'second'){
         this.$router.push({
-          name:'articleHome'
+          name:'articleManage'
         })
       }
       if(tab.name == 'first'){
         this.$router.push({
-          name:'Home'
+          name:'meneManagerHome'
+        })
+      }
+      if(tab.name == 'myaticle'){
+        this.$router.push({
+          name:'articleHome'
         })
       }
     }

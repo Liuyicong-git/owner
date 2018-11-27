@@ -15,4 +15,7 @@ export default {
  body{
    margin: 0;
  }
+ li{
+   list-style: none;
+ }
 </style>

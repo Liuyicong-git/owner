@@ -5,7 +5,7 @@
           <el-input v-model="form.title" class="menuInput"/>
       </el-form-item>
       <el-form-item label="内容">
-        <quill-editor  ref="myQuillEditor" :content="content"
+        <quill-editor  ref="myQuillEditor" :content="form.content"
                     style="height: 70vh; margin-bottom: 54px"
                     :options="editorOption"
                     @change="onEditorChange($event)">
@@ -17,7 +17,7 @@
               @change="uploadImg('uploadFormMulti')" /><!--style="display: none"-->
       </form>
       <div style="float:right;">
-        <el-button type="primary">提交</el-button>
+        <el-button type="primary" @click="submit">提交</el-button>
         <el-button> 取消</el-button>
       </div>  
     </el-form>  
@@ -40,10 +40,12 @@ export default {
   },
   data () {
     return {
-      content: '',
+      
       editorOption: {},
       form:{
-        title:''
+        title:'' , 
+        content: '',
+        username:'liuyicong'
       }
     }
   },
@@ -70,7 +72,7 @@ export default {
       // },
       onEditorChange({ quill, html, text }) {
         // console.log('editor change!', quill, html, text)
-        this.content = html
+        this.form.content = html
       },
       async uploadImg(){
         var vm = this
@@ -94,6 +96,11 @@ export default {
           document.getElementById('uploadFormMulti').value=''
             
          })
+      },
+      submit(){
+        this.axios.post('/api/article/add',this.form).then(resp=>{
+          console.log(resp)
+        })
       }
 
   },
